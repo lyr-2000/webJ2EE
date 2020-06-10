@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
 	<property name="LOG_HOME" value="D:/logs/diiop"/>
+	<property name="CONSOLE_LOG_PATTERN"
+			  value="%red(%date{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %red([%thread]) %boldMagenta(%logger{50}) %cyan(%msg%n)"/>
+
 	<!--控制台输出-->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>-->
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
 			<charset>gbk</charset>
 		</encoder>
 	</appender>

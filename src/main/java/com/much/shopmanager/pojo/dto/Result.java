@@ -1,12 +1,13 @@
 package com.much.shopmanager.pojo.dto;
 
+import lombok.ToString;
 import org.springframework.beans.BeanUtils;
 
 /**
  * @Author lyr
  * @create 2020/6/9 1:38
  */
-
+@ToString
 public class Result<DataValue> {
     private Integer code;
     private DataValue data;
@@ -14,6 +15,13 @@ public class Result<DataValue> {
         Result<DataValue> result = new Result<>();
         result.setData(resp);
         result.setCode(200);
+        return result;
+    }
+
+    public static  <DataValue>Result<DataValue> of(Integer code,DataValue resp) {
+        Result<DataValue> result = new Result<>();
+        result.setData(resp);
+        result.setCode(code);
         return result;
     }
 

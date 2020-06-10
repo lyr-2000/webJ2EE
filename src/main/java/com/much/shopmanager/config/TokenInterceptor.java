@@ -2,6 +2,8 @@ package com.much.shopmanager.config;
 
 import com.much.shopmanager.common.util.JwtUtil;
 
+import com.much.shopmanager.common.util.WebUtil;
+import com.much.shopmanager.pojo.dto.Result;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,13 +22,15 @@ public class TokenInterceptor  implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String token = httpServletRequest.getHeader("token");
-        System.out.println(123);
+        // System.out.println(123);
         log.error("收到请求");
         log.info("收到请求");
         try{
             JwtUtil.getJwtInformation(token);
         }catch (Exception ex) {
             log.error("出现问题");
+            WebUtil.renderJson(Result.of(400,"参数token失效"),httpServletResponse);
+            // WebUtil.renderJson(,httpServletResponse);
             return false;
         }
         //如果校验不通过 拒绝执行

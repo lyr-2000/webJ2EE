@@ -1,16 +1,17 @@
 package com.much.shopmanager.entity;
 
 import java.util.Date;
+import com.alibaba.fastjson.JSONObject;
 import java.io.Serializable;
 
 /**
  * (Sku)实体类
  *
  * @author makejava
- * @since 2020-06-07 01:44:06
+ * @since 2020-06-09 00:17:50
  */
 public class Sku implements Serializable {
-    private static final long serialVersionUID = -52820565445381482L;
+    private static final long serialVersionUID = -43837667035965782L;
     
     private Integer id;
     
@@ -22,7 +23,7 @@ public class Sku implements Serializable {
     
     private Double price;
     
-    private Object param;
+    private JSONObject param;
     
     private String saleable;
     
@@ -32,7 +33,7 @@ public class Sku implements Serializable {
     
     private Date lastUpdateTime;
     
-    private Object isDeleted;
+    private Integer isDeleted;
 
 
     public Integer getId() {
@@ -75,11 +76,11 @@ public class Sku implements Serializable {
         this.price = price;
     }
 
-    public Object getParam() {
+    public JSONObject getParam() {
         return param;
     }
 
-    public void setParam(Object param) {
+    public void setParam(JSONObject param) {
         this.param = param;
     }
 
@@ -115,11 +116,11 @@ public class Sku implements Serializable {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public Object getIsDeleted() {
+    public Integer getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Object isDeleted) {
+    public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
 

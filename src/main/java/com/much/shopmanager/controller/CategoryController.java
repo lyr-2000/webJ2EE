@@ -2,9 +2,11 @@ package com.much.shopmanager.controller;
 
 import com.much.shopmanager.entity.Category;
 import com.much.shopmanager.service.CategoryService;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Category)表控制层
@@ -13,7 +15,7 @@ import javax.annotation.Resource;
  * @since 2020-06-07 01:44:06
  */
 @RestController
-@RequestMapping("category")
+
 public class CategoryController {
     /**
      * 服务对象
@@ -27,9 +29,47 @@ public class CategoryController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
-    public Category selectOne(Integer id) {
+    @GetMapping("category/{id}")
+    public Category selectOne( @PathVariable Integer id) {
         return this.categoryService.queryById(id);
     }
+
+    @GetMapping("/category")
+    public List<Category> getPage(@RequestParam Integer page, @RequestParam Integer size) {
+        Assert.isTrue(page>0 && size>0);
+        return categoryService.queryAllByLimit(
+                size*(page-1),
+                size
+        );
+    }
+    /*
+    @GetMapping
+    public List<Category> selectByExample() {
+        // return categoryService
+    }
+
+    */
+
+    /**
+     * 更新分类
+     * @param category
+     * @return
+     */
+    @PutMapping("/category")
+    public Category updateOne(@RequestBody Category category) {
+        return categoryService.update(category);
+    }
+
+    /**
+     * 添加分类
+     * @param category
+     * @return
+     */
+    @PostMapping("/category")
+    public Category addOne(@RequestBody Category category) {
+        return categoryService.insert(category);
+    }
+
+
 
 }

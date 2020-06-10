@@ -13,7 +13,6 @@ import javax.annotation.Resource;
  * @since 2020-06-07 01:44:06
  */
 @RestController
-@RequestMapping("specParam")
 public class SpecParamController {
     /**
      * 服务对象
@@ -27,8 +26,8 @@ public class SpecParamController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
-    public SpecParam selectOne(Integer id) {
+    @GetMapping("product_param/{id}")
+    public SpecParam selectOne(@PathVariable Integer id) {
         return this.specParamService.queryById(id);
     }
 

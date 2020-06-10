@@ -39,7 +39,7 @@
   }, {
     "name" : "param",
     "comment" : null,
-    "type" : null,
+    "type" : "com.alibaba.fastjson.JSONObject",
     "shortType" : null,
     "custom" : false,
     "ext" : { }
@@ -74,7 +74,7 @@
   }, {
     "name" : "isDeleted",
     "comment" : null,
-    "type" : null,
+    "type" : "java.lang.Integer",
     "shortType" : null,
     "custom" : false,
     "ext" : { }

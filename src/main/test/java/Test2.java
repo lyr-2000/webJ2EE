@@ -1,5 +1,6 @@
 import com.alibaba.fastjson.JSONObject;
 import com.much.shopmanager.entity.Sku;
+import com.much.shopmanager.pojo.dto.Result;
 import com.much.shopmanager.service.SkuService;
 
 import org.junit.Test;
@@ -30,5 +31,10 @@ public class Test2 extends PPPTest{
         tSku.setParam(map);
         tSku.setIsDeleted(1);
         skuService.insert(tSku);
+    }
+
+    @Test
+    public void pppppp() {
+        System.out.println(Result.builder().code(200).data("sfjaj").build());
     }
 }

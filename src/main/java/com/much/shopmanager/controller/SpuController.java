@@ -27,7 +27,7 @@ public class SpuController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
+    @GetMapping("/selectOne")
     public Spu selectOne(Integer id) {
         return this.spuService.queryById(id);
     }

@@ -17,6 +17,7 @@ import java.util.Map;
  * @Author lyr
  * @create 2020/6/9 1:48
  */
+@CrossOrigin
 @RestController
 public class LoginController {
     /**

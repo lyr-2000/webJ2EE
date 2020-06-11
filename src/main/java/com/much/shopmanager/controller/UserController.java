@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @since 2020-06-09 00:47:01
  */
 @RestController
-
+@CrossOrigin
 public class UserController {
     /**
      * 服务对象

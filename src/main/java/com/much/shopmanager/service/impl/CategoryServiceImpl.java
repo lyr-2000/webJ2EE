@@ -76,4 +76,9 @@ public class CategoryServiceImpl implements CategoryService {
     public boolean deleteById(Integer id) {
         return this.categoryDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<Category> selectLevelData(Integer page,Integer size) {
+        return categoryDao.queryAllByLimit((page-1)*size,size);
+    }
 }

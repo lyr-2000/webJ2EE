@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.much.shopmanager.entity.Sku;
 import com.much.shopmanager.pojo.dto.Result;
 import com.much.shopmanager.pojo.dto.ResultBuilder;
+import com.much.shopmanager.service.CategoryService;
 import com.much.shopmanager.service.SkuService;
 
 import org.junit.Test;
@@ -13,10 +14,15 @@ import javax.annotation.Resource;
  * @create 2020/6/7 0:59
  */
 public class Test2 extends PPPTest{
+    @Resource
+    private CategoryService categoryService;
 
     @Test
     public void sss() {
-        System.out.println(123);
+
+        System.out.println(
+                categoryService.selectLevelData(1,1)
+        );
     }
 
     @Resource

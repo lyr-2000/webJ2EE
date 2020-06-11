@@ -13,6 +13,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-06-07 01:44:06
  */
+@CrossOrigin
 @RestController
 public class SkuController {
     /**

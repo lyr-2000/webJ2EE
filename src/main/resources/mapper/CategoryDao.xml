@@ -9,6 +9,17 @@
         <result property="isParent" column="is_parent" jdbcType="INTEGER"/>
         <result property="sort" column="sort" jdbcType="INTEGER"/>
         <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+
+<!--        <collection property="childs" ofType="com.much.shopmanager.entity.Category">-->
+<!--            &lt;!&ndash; 定义这个集合元素的封装规则 &ndash;&gt;-->
+<!--            <result property="id"        column="id"          jdbcType="INTEGER"/>-->
+<!--            <result property="name"      column="name"        jdbcType="VARCHAR"/>-->
+<!--            <result property="parentId"  column="parent_id"   jdbcType="INTEGER"/>-->
+<!--            <result property="isParent"  column="is_parent"   jdbcType="INTEGER"/>-->
+<!--            <result property="sort"      column="sort"        jdbcType="INTEGER"/>-->
+<!--            <result property="isDeleted" column="is_deleted"  jdbcType="INTEGER"/>-->
+<!--        </collection>-->
+
     </resultMap>
 
     <!--查询单个-->
@@ -53,6 +64,17 @@
             </if>
         </where>
     </select>
+    <select id="findCategoryLevelList" resultType="com.much.shopmanager.entity.Category">
+        select * from t_category t1
+        left join
+        t_category t2 on
+        t1.id = t2.parent_id
+        left join t_category t3
+        on t2.id = t3.parent_id
+        where
+        t1.sort = 1 and t2.sort = 2 and t3.sort = 3
+         limit #{offset}, #{limit}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
@@ -87,5 +109,7 @@
     <delete id="deleteById">
         delete from lyr_shop_manager.t_category where id = #{id}
     </delete>
+
+
 
 </mapper>

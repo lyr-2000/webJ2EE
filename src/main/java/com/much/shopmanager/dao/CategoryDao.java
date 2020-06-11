@@ -62,4 +62,6 @@ public interface CategoryDao {
      */
     int deleteById(Integer id);
 
+    List<Category> findCategoryLevelList(Integer offSet,Integer size);
+
 }

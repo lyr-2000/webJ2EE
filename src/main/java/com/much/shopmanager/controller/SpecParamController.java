@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  *
  * @author makejava
  * @since 2020-06-07 01:44:06
- */
+ */@CrossOrigin
 @RestController
 public class SpecParamController {
     /**

@@ -15,7 +15,7 @@ import java.util.List;
  * @since 2020-06-07 01:44:06
  */
 @RestController
-
+@CrossOrigin
 public class CategoryController {
     /**
      * 服务对象
@@ -34,14 +34,14 @@ public class CategoryController {
         return this.categoryService.queryById(id);
     }
 
-    @GetMapping("/category")
-    public List<Category> getPage(@RequestParam Integer page, @RequestParam Integer size) {
-        Assert.isTrue(page>0 && size>0);
-        return categoryService.queryAllByLimit(
-                size*(page-1),
-                size
-        );
-    }
+    // @GetMapping("/category")
+    // public List<Category> getPage(@RequestParam Integer page, @RequestParam Integer size) {
+    //     Assert.isTrue(page>0 && size>0);
+    //     return categoryService.queryAllByLimit(
+    //             size*(page-1),
+    //             size
+    //     );
+    // }
     /*
     @GetMapping
     public List<Category> selectByExample() {
@@ -70,6 +70,12 @@ public class CategoryController {
         return categoryService.insert(category);
     }
 
+
+    @GetMapping("/category")
+    public List<Category> findCategoryList(@RequestParam Integer page,@RequestParam Integer size) {
+        return null;
+        // categoryService.queryAllByLimit()
+    }
 
 
 }

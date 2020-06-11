@@ -18,7 +18,7 @@ import java.util.List;
  * @since 2020-06-07 01:44:06
  */
 @RestController
-
+@CrossOrigin
 public class BrandController {
     /**
      * 服务对象

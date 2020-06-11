@@ -29,6 +29,12 @@ public interface SpuService {
     List<Spu> queryAllByLimit(int offset, int limit);
 
     /**
+     * 所有记录数量
+     * @return
+     */
+    Long countTotalRecord();
+
+    /**
      * 新增数据
      *
      * @param spu 实例对象

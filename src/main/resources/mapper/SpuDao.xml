@@ -73,6 +73,9 @@
             </if>
         </where>
     </select>
+    <select id="countTotalRecord" resultType="java.lang.Long">
+        select count(*) from t_spu
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

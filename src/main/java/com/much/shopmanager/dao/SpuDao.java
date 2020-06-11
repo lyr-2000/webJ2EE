@@ -28,6 +28,7 @@ public interface SpuDao {
      * @return 对象列表
      */
     List<Spu> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    Long countTotalRecord();
 
 
     /**

@@ -18,17 +18,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Slf4j
 public class TokenInterceptor  implements HandlerInterceptor {
-    // private final Logger log = LoggerFactory.getLogger(TokenInterceptor.class);
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String token = httpServletRequest.getHeader("token");
-        // System.out.println(123);
-        log.error("收到请求");
-        log.info("收到请求");
+        String uri =  httpServletRequest.getRequestURI();
+
+        log.info("收到请求 {}",uri);
         try{
             JwtUtil.getJwtInformation(token);
         }catch (Exception ex) {
-            log.error("出现问题");
+            log.error("没有 token");
             WebUtil.renderJson(Result.of(400,"参数token失效"),httpServletResponse);
             // WebUtil.renderJson(,httpServletResponse);
             return false;

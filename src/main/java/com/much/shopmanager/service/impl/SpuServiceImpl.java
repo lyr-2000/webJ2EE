@@ -42,6 +42,17 @@ public class SpuServiceImpl implements SpuService {
         return this.spuDao.queryAllByLimit(offset, limit);
     }
 
+
+    /**
+     * 所有记录数量
+     *
+     * @return
+     */
+    @Override
+    public Long countTotalRecord() {
+        return this.spuDao.countTotalRecord();
+    }
+
     /**
      * 新增数据
      *

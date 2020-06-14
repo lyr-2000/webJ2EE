@@ -33,11 +33,23 @@ public class Test2 extends PPPTest{
         Sku tSku = new Sku();
         tSku.setTitle("123123132");
         JSONObject map = new JSONObject();
-        map.put("内存","4GB");
+        map.put("内存","7GB");
         map.put("屏幕","超大");
         tSku.setParam(map);
         tSku.setIsDeleted(1);
         skuService.insert(tSku);
+    }
+    @Test
+    public void ssss() {
+        System.out.println(
+                skuService.queryById(3)
+        );
+        System.out.println(
+                skuService.queryAllByLimit(0,5)
+        );
+        System.out.println(
+                skuService.findSkuShowList(2)
+        );
     }
 
     @Test

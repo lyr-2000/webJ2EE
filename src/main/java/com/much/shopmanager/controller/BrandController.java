@@ -45,9 +45,22 @@ public class BrandController {
      * @return
      */
     @GetMapping("/brand/all")
-    public List<Brand> getAllBrand(@RequestParam Integer page,@RequestParam Integer size) {
+    public List<Brand> getAllBrand(@RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "5") Integer size) {
         Assert.isTrue(page>0&& size>1,"分页条件不对");
         return brandService.queryAllByLimit((page-1)*size,size);
+    }
+
+    @GetMapping("/brand/all/_count")
+    public Long getTotalNum() {
+        return brandService.countAll();
+    }
+    @GetMapping("/brand")
+    public List<Brand> selectListLikeName(@RequestParam Integer page,
+                                          @RequestParam Integer size,
+                                          @RequestParam String name,
+                                          @RequestParam String letter) {
+        Assert.isTrue(page>0&&size>1,"参数不正确");
+        return brandService.searchLike(name,letter,(page-1)*size,size);
     }
 
     /**
@@ -59,6 +72,7 @@ public class BrandController {
     public Brand addAnNewBrand(@RequestBody Brand brand) {
         return brandService.insert(brand);
     }
+
 
     /**
      * 更新对应品牌

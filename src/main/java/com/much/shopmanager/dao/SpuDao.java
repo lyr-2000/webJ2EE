@@ -30,6 +30,14 @@ public interface SpuDao {
     List<Spu> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
     Long countTotalRecord();
 
+    /**
+     * 连表查询
+     * @param offset
+     * @param limit
+     * @return
+     */
+    List<Spu> queryBrandCategoryInfo(@Param("offset") Integer offset,@Param("limit") Integer limit);
+
 
     /**
      * 通过实体作为筛选条件查询

@@ -24,7 +24,8 @@ public class TokenInterceptor  implements HandlerInterceptor {
         String token = httpServletRequest.getHeader("token");
         String uri =  httpServletRequest.getRequestURI();
 
-        log.info("收到请求 {}",uri);
+
+        log.info("收到请求 {} {}",uri ,httpServletRequest.getMethod());
         try{
             JwtUtil.getJwtInformation(token);
         }catch (Exception ex) {

@@ -42,7 +42,7 @@ public class SpuController {
     public List<Spu> selectListFirstPage(@RequestParam Integer page,@RequestParam Integer size ) {
         log.info("收到请求 {},{}",page,size);
         Assert.isTrue(page>0&&size>1,"参数不正确");
-        List<Spu> result = spuService.queryAllByLimit((page-1)*size,size);
+        List<Spu> result = spuService.queryShowSpu((page-1)*size,size);
         log.info("result {}",result);
         return result;
     }
@@ -52,5 +52,17 @@ public class SpuController {
         //获得总记录数量
         return Result.of(spuService.countTotalRecord());
     }
+
+
+    @PutMapping("/spu/saleable")
+    public Result<Spu> updateStatus(@RequestBody Spu spu) {
+        log.info("请求参数，{}",spu);
+        // Spu spu = new Spu();
+        // spu.setSaleable(saleable.toString());
+        // spu.setId(id);
+        return Result.of(spuService.update(spu));
+
+    }
+
 
 }

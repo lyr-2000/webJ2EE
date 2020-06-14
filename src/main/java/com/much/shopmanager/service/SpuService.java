@@ -28,6 +28,8 @@ public interface SpuService {
      */
     List<Spu> queryAllByLimit(int offset, int limit);
 
+    List<Spu> queryShowSpu(int offset, int limit);
+
     /**
      * 所有记录数量
      * @return

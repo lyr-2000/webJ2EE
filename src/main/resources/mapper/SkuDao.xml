@@ -73,6 +73,9 @@
             </if>
         </where>
     </select>
+    <select id="queryAllBySpuId" resultMap="SkuMap" >
+        select id, spu_id, title, image, price, param, saleable, valid, create_time, last_update_time, is_deleted from t_sku where spu_id = #{spuId} limit 30
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

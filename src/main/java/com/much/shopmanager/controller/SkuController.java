@@ -54,4 +54,10 @@ public class SkuController {
      *
      * */
 
+
+    @GetMapping("/sku")
+    public List<Sku> getBySpuId(@RequestParam Integer spuId) {
+        return this.skuService.findSkuShowList(spuId);
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.much.shopmanager.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-06-07 01:44:06
  */
+@Data
 public class Brand implements Serializable {
     private static final long serialVersionUID = 728884937278408604L;
     
@@ -22,44 +25,6 @@ public class Brand implements Serializable {
     private String isDeleted;
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getLetter() {
-        return letter;
-    }
-
-    public void setLetter(String letter) {
-        this.letter = letter;
-    }
-
-    public String getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(String isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+    //
 
 }

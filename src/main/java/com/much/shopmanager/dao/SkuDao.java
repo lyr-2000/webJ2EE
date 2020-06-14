@@ -29,7 +29,7 @@ public interface SkuDao {
      */
     List<Sku> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
-
+    List<Sku> queryAllBySpuId(@Param("spuId") Integer spuId);
     /**
      * 通过实体作为筛选条件查询
      *

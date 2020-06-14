@@ -42,6 +42,11 @@ public class SpuServiceImpl implements SpuService {
         return this.spuDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<Spu> queryShowSpu(int offset,int limit) {
+        return this.spuDao.queryBrandCategoryInfo(offset,limit);
+    }
+
 
     /**
      * 所有记录数量

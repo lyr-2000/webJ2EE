@@ -14,6 +14,22 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="lastUpdateTime" column="last_update_time" jdbcType="TIMESTAMP"/>
         <result property="isDeleted" column="is_deleted" jdbcType="OTHER"/>
+
+        <!--  association可以指定联合的javaBean对象
+        property="dept"：指定哪个属性是联合的对象
+        javaType:指定这个属性对象的类型[不能省略]
+        -->
+        <association property="brand" javaType="com.much.shopmanager.entity.Brand">
+            <id column="bid" property="id"/>
+            <result column="bname" property="name"/>
+            <result column="bletter" property="letter"/>
+        </association>
+        <association property="category" javaType="com.much.shopmanager.entity.Category">
+            <id column="bid" property="id"/>
+            <result column="cname" property="name"/>
+
+        </association>
+        <!--        -->
     </resultMap>
 
     <!--查询单个-->
@@ -35,7 +51,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="SpuMap">
         select
-          id, title, sub_title, category_id, brand_id, spg_id, saleable, valid, create_time, last_update_time, is_deleted
+        id, title, sub_title, category_id, brand_id, spg_id, saleable, valid, create_time, last_update_time, is_deleted
         from lyr_shop_manager.t_spu
         <where>
             <if test="id != null">
@@ -75,6 +91,14 @@
     </select>
     <select id="countTotalRecord" resultType="java.lang.Long">
         select count(*) from t_spu
+    </select>
+    <!--    首页展示 -->
+    <select id="queryBrandCategoryInfo" resultMap="SpuMap">
+        SELECT s.id,title,category_id,brand_id,create_time,saleable,last_update_time,b.id bid,b.`name` as bname,b.letter bletter,
+         c.name as cname
+        FROM `t_spu` s join t_brand b on s.brand_id = b.id
+         join t_category c on s.category_id = c.id
+        limit #{offset},#{limit}
     </select>
 
     <!--新增所有列-->

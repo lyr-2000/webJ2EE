@@ -3,6 +3,7 @@ package com.much.shopmanager.service.impl;
 import com.much.shopmanager.entity.Sku;
 import com.much.shopmanager.dao.SkuDao;
 import com.much.shopmanager.service.SkuService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-06-07 01:44:06
  */
+@Slf4j
 @Service("skuService")
 public class SkuServiceImpl implements SkuService {
     @Resource
@@ -28,6 +30,19 @@ public class SkuServiceImpl implements SkuService {
     @Override
     public Sku queryById(Integer id) {
         return this.skuDao.queryById(id);
+    }
+
+    /**
+     * 首页展示
+     * @param spuId
+     * @return
+     */
+    @Override
+    public List<Sku> findSkuShowList(Integer spuId) {
+        List<Sku> list =  this.skuDao.queryAllBySpuId(spuId);
+        log.info("list ->{}",list) ;
+        return list;
+
     }
 
     /**

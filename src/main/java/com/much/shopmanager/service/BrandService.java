@@ -19,6 +19,10 @@ public interface BrandService {
      */
     Brand queryById(Integer id);
 
+    List<Brand> searchLike(String name, String letter, Integer skip, Integer size);
+
+    Long  countAll();
+
     /**
      * 查询多条数据
      *

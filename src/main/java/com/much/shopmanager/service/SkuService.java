@@ -19,6 +19,8 @@ public interface SkuService {
      */
     Sku queryById(Integer id);
 
+    List<Sku> findSkuShowList(Integer spuId);
+
     /**
      * 查询多条数据
      *

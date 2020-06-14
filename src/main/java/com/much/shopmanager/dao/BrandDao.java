@@ -19,6 +19,8 @@ public interface BrandDao {
      * @return 实例对象
      */
     Brand queryById(Integer id);
+    Long countAll();
+
 
     /**
      * 查询指定行数据
@@ -28,7 +30,8 @@ public interface BrandDao {
      * @return 对象列表
      */
     List<Brand> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
-
+    List<Brand> searchNameAndLetter(@Param("name") String name,@Param("letter") String letter
+            ,@Param("skip") Integer skip,@Param("size") Integer size);
 
     /**
      * 通过实体作为筛选条件查询

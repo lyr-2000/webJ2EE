@@ -29,6 +29,15 @@ public class BrandServiceImpl implements BrandService {
     public Brand queryById(Integer id) {
         return this.brandDao.queryById(id);
     }
+    @Override
+    public List<Brand> searchLike(String name,String letter,Integer skip,Integer size) {
+        return brandDao.searchNameAndLetter(name,letter,skip,size);
+    }
+
+    @Override
+    public Long countAll() {
+        return brandDao.countAll();
+    }
 
     /**
      * 查询多条数据

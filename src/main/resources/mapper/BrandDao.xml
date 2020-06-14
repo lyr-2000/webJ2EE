@@ -18,6 +18,7 @@
         where id = #{id}
     </select>
 
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BrandMap">
         select
@@ -25,6 +26,7 @@
         from lyr_shop_manager.t_brand
         limit #{offset}, #{limit}
     </select>
+
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BrandMap">
@@ -48,6 +50,23 @@
                 and is_deleted = #{isDeleted}
             </if>
         </where>
+    </select>
+    <select id="countAll" resultType="java.lang.Long">
+        select count(*) from t_brand
+    </select>
+    <select id="searchNameAndLetter" resultType="com.much.shopmanager.entity.Brand">
+        select * from t_brand
+        <where>
+
+            <if test="name != null and name != ''">
+                and `name` like CONCAT('%',#{name},'%')
+            </if>
+
+            <if test="letter != null and letter != ''">
+                and letter like CONCAT('%',#{letter},'%')
+            </if>
+        </where>
+         limit #{skip},#{size}
     </select>
 
     <!--新增所有列-->

@@ -100,6 +100,130 @@
          join t_category c on s.category_id = c.id
         limit #{offset},#{limit}
     </select>
+    <select id="queryByExample" resultType="com.much.shopmanager.entity.Spu">
+        select
+        id, title, sub_title, category_id, brand_id, spg_id, saleable, valid, create_time, last_update_time, is_deleted
+        from lyr_shop_manager.t_spu
+        <where>
+            <if test="spu.id != null">
+                and id = #{spu.id}
+            </if>
+            <if test="spu.title != null and spu.title != ''">
+                and title = #{spu.title}
+            </if>
+            <if test="spu.subTitle != null and spu.subTitle != ''">
+                and sub_title = #{spu.subTitle}
+            </if>
+            <if test="spu.categoryId != null">
+                and category_id = #{spu.categoryId}
+            </if>
+            <if test="spu.brandId != null">
+                and brand_id = #{spu.brandId}
+            </if>
+            <if test="spu.spgId != null">
+                and spg_id = #{spu.spgId}
+            </if>
+            <if test="spu.saleable != null and spu.saleable != ''">
+                and saleable = #{spu.saleable}
+            </if>
+            <if test="spu.valid != null">
+                and valid = #{spu.valid}
+            </if>
+            <if test="spu.createTime != null">
+                and create_time = #{spu.createTime}
+            </if>
+            <if test="spu.lastUpdateTime != null">
+                and last_update_time = #{spu.lastUpdateTime}
+            </if>
+            <if test="spu.isDeleted != null">
+                and is_deleted = #{spu.isDeleted}
+            </if>
+        </where>
+          limit #{skip},#{size}
+    </select>
+    <select id="queryfluzzyName" resultMap="SpuMap">
+        SELECT s.*,b.name as bname,c.name as cname  FROM  t_spu s
+            join t_brand b on
+            s.brand_id = b.id
+            join t_category c on
+            c.id = s.category_id
+             <where>
+                 <if test="title != null">
+                     and s.title like concat('%',#{title},'%')
+                 </if>
+                 <if test="brandName!=null">
+                     and b.name like concat('%', #{brandName},'%')
+                 </if>
+                 <if test="categoryName!=null">
+                     and c.name like concat('%', #{categoryName},'%')
+                 </if>
+
+             </where>
+              limit #{skip},#{size}
+    </select>
+    <select id="queryFluzzyNameCount" resultType="java.lang.Long">
+        SELECT count(*)  FROM  t_spu s
+        join t_brand b on
+        s.brand_id = b.id
+        join t_category c on
+        c.id = s.category_id
+        <where>
+            <if test="title != null">
+                and s.title like concat('%',#{title},'%')
+            </if>
+            <if test="brandName!=null">
+                and b.name like concat('%', #{brandName},'%')
+            </if>
+            <if test="categoryName!=null">
+                and c.name like concat('%', #{categoryName},'%')
+            </if>
+
+        </where>
+
+    </select>
+    <select id="countByExample" resultType="java.lang.Long">
+        select
+          count(*)
+        from lyr_shop_manager.t_spu
+        <where>
+            <if test="spu.id != null">
+                and id = #{spu.id}
+            </if>
+            <if test="spu.title != null and spu.title != ''">
+                and title = #{spu.title}
+            </if>
+            <if test="spu.subTitle != null and spu.subTitle != ''">
+                and sub_title = #{spu.subTitle}
+            </if>
+            <if test="spu.categoryId != null">
+                and category_id = #{spu.categoryId}
+            </if>
+            <if test="spu.brandId != null">
+                and brand_id = #{spu.brandId}
+            </if>
+            <if test="spu.spgId != null">
+                and spg_id = #{spu.spgId}
+            </if>
+            <if test="spu.saleable != null and spu.saleable != ''">
+                and saleable = #{spu.saleable}
+            </if>
+            <if test="spu.valid != null">
+                and valid = #{spu.valid}
+            </if>
+            <if test="spu.createTime != null">
+                and create_time = #{spu.createTime}
+            </if>
+            <if test="spu.lastUpdateTime != null">
+                and last_update_time = #{spu.lastUpdateTime}
+            </if>
+            <if test="spu.isDeleted != null">
+                and is_deleted = #{spu.isDeleted}
+            </if>
+        </where>
+    </select>
+    <!--
+     where b.name like concat('%', #{brandName},'%') and c.name like concat('%', #{categoryName},'%')
+    -->
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

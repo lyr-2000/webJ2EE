@@ -1,5 +1,6 @@
 package com.much.shopmanager.controller;
 
+import com.much.shopmanager.entity.Category;
 import com.much.shopmanager.entity.Spu;
 import com.much.shopmanager.pojo.dto.Result;
 import com.much.shopmanager.service.SpuService;
@@ -38,6 +39,24 @@ public class SpuController {
         return this.spuService.queryById(id);
     }
 
+    @PostMapping("/spu")
+    public Result<Spu> insertOrUpdateProduct(
+            @RequestParam String brand,
+            @RequestParam String category,
+            @RequestParam String spuProductName
+    ) {
+            try{
+                Spu spu = spuService.insertOrUpdate(brand, category, spuProductName);;
+                return Result.of(spu);
+            }catch (Exception ex) {
+                Result result = new Result();
+                result.setCode(500);
+                return result;
+            }
+
+    }
+
+
     @GetMapping("/spu_info")
     public List<Spu> selectListFirstPage(@RequestParam Integer page,@RequestParam Integer size ) {
         log.info("收到请求 {},{}",page,size);
@@ -62,6 +81,25 @@ public class SpuController {
         // spu.setId(id);
         return Result.of(spuService.update(spu));
 
+    }
+
+    @GetMapping("/spu_info/category")
+    public Result<List<Spu>> selectByCategory(@RequestParam Integer categoryId,@RequestParam Integer page,@RequestParam Integer size) {
+        Spu spu = new Spu();
+        spu.setCategoryId(categoryId);
+        Result<List<Spu>> result = Result.of(spuService.queryByExample(spu,page,size));
+        result.setTotal(spuService.countByExample(spu));
+        return  result;
+    }
+
+    @GetMapping("/spu_info/_search")
+    public Result<List<Spu>> selectByFuzzyName(@RequestParam String brandName,
+                                       @RequestParam String categoryName,
+                                       @RequestParam String title,
+                                       @RequestParam Integer page,@RequestParam Integer size) {
+        Result<List<Spu>> result = Result.of(spuService.queryByFuzzyName(brandName, categoryName,title, page, size));
+        result.setTotal(spuService.countByName(brandName, categoryName, title));
+        return result;
     }
 
 

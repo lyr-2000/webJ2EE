@@ -1,10 +1,13 @@
 package com.much.shopmanager.controller;
 
 import com.much.shopmanager.entity.Sku;
+import com.much.shopmanager.entity.SkuBO;
 import com.much.shopmanager.service.SkuService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,6 +16,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-06-07 01:44:06
  */
+@Slf4j
 @CrossOrigin
 @RestController
 public class SkuController {
@@ -33,17 +37,31 @@ public class SkuController {
         return this.skuService.queryById(id);
     }
 
-    @GetMapping("product/sku")
-    public List<Sku> queryList(
-            @RequestParam(required = false) String title,
-            @RequestParam(required = false) Integer categoryId,
-            @RequestParam(required = false) Integer brandId
-    ) {
-        //todo:模糊查询
-        // like % title %
-        return null;
 
+    @PostMapping("/sku")
+    public Sku insert(@RequestBody SkuBO skuBO) {
+        return skuService.insertOrUpdate(skuBO);
     }
+
+    @PostMapping("/sku_info")
+    public Sku insertOne(@RequestBody Sku sku) {
+        log.info("sku ->{}",sku);
+        // sku.setCreateTime(new Date());
+        // sku.setLastUpdateTime(new Date());
+        return skuService.insert(sku);
+    }
+
+    // @GetMapping("product/sku")
+    // public List<Sku> queryList(
+    //         @RequestParam(required = false) String title,
+    //         @RequestParam(required = false) Integer categoryId,
+    //         @RequestParam(required = false) Integer brandId
+    // ) {
+    //     //todo:模糊查询
+    //     // like % title %
+    //     return null;
+    //
+    // }
     /**
      *
      * 业务：

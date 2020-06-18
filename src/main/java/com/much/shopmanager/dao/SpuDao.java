@@ -28,6 +28,14 @@ public interface SpuDao {
      * @return 对象列表
      */
     List<Spu> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<Spu> queryfluzzyName(@Param("categoryName") String categoryName,
+                              @Param("title")     String title,
+                              @Param("brandName") String brandName
+            ,@Param("skip")Integer skip,@Param("size") Integer page);
+    long queryFluzzyNameCount(@Param("categoryName") String categoryName,
+                                   @Param("title")     String title,
+                                   @Param("brandName") String brandName
+           );
     Long countTotalRecord();
 
     /**
@@ -46,7 +54,8 @@ public interface SpuDao {
      * @return 对象列表
      */
     List<Spu> queryAll(Spu spu);
-
+    List<Spu> queryByExample(@Param("spu") Spu spu,@Param("skip") Integer skip,@Param("size") Integer size);
+    Long countByExample(@Param("spu") Spu spu);
     /**
      * 新增数据
      *

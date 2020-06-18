@@ -2,11 +2,14 @@ package com.much.shopmanager.service.impl;
 
 import com.much.shopmanager.entity.Sku;
 import com.much.shopmanager.dao.SkuDao;
+import com.much.shopmanager.entity.SkuBO;
+import com.much.shopmanager.entity.Spu;
 import com.much.shopmanager.service.SkuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +23,23 @@ import java.util.List;
 public class SkuServiceImpl implements SkuService {
     @Resource
     private SkuDao skuDao;
+
+    /**
+     * 插入一条数据
+     *
+     * @param skuBO
+     * @return
+     */
+    @Override
+    public Sku insertOrUpdate(SkuBO skuBO) {
+        Sku sku = skuBO.getSku();
+        Spu spu = skuBO.getSpu();
+        sku.setSpuId(spu.getId());
+        sku.setCreateTime(new Date());
+        sku.setLastUpdateTime(new Date());
+        skuDao.insert(sku);
+        return sku;
+    }
 
     /**
      * 通过ID查询单条数据
@@ -65,6 +85,8 @@ public class SkuServiceImpl implements SkuService {
      */
     @Override
     public Sku insert(Sku sku) {
+        sku.setCreateTime(new Date());
+        sku.setLastUpdateTime(new Date());
         this.skuDao.insert(sku);
         return sku;
     }
@@ -77,6 +99,8 @@ public class SkuServiceImpl implements SkuService {
      */
     @Override
     public Sku update(Sku sku) {
+        // sku.setCreateTime(new Date());
+        sku.setLastUpdateTime(new Date());
         this.skuDao.update(sku);
         return this.queryById(sku.getId());
     }

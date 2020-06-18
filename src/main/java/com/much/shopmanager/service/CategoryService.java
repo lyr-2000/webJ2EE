@@ -53,4 +53,5 @@ public interface CategoryService {
     boolean deleteById(Integer id);
 
     List<Category> selectLevelData(Integer page, Integer size);
+    List<Category> selectByExample(Category category);
 }

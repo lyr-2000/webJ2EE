@@ -3,17 +3,18 @@
 <mapper namespace="com.much.shopmanager.dao.SkuDao">
 
     <resultMap type="com.much.shopmanager.entity.Sku" id="SkuMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="spuId" column="spu_id" jdbcType="INTEGER"/>
-        <result property="title" column="title" jdbcType="VARCHAR"/>
-        <result property="image" column="image" jdbcType="VARCHAR"/>
-        <result property="price" column="price" jdbcType="NUMERIC"/>
-        <result property="param" column="param" jdbcType="OTHER" typeHandler="com.much.shopmanager.config.JsonConverter"/>
-        <result property="saleable" column="saleable" jdbcType="VARCHAR"/>
-        <result property="valid" column="valid" jdbcType="INTEGER"/>
-        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="id"             column="id" jdbcType="INTEGER"/>
+        <result property="spuId"          column="spu_id" jdbcType="INTEGER"/>
+        <result property="title"          column="title" jdbcType="VARCHAR"/>
+        <result property="image"          column="image" jdbcType="VARCHAR"/>
+        <result property="price"          column="price" jdbcType="NUMERIC"/>
+        <result property="param"          column="param" jdbcType="OTHER" typeHandler="com.much.shopmanager.config.JsonConverter"/>
+        <result property="saleable"       column="saleable" jdbcType="VARCHAR"/>
+        <result property="valid"          column="valid" jdbcType="INTEGER"/>
+        <result property="createTime"     column="create_time" jdbcType="TIMESTAMP"/>
         <result property="lastUpdateTime" column="last_update_time" jdbcType="TIMESTAMP"/>
-        <result property="isDeleted" column="is_deleted" jdbcType="OTHER"/>
+        <result property="isDeleted"      column="is_deleted" jdbcType="OTHER"/>
+        <result property="surplusCount" column="surplus_count" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
@@ -74,7 +75,7 @@
         </where>
     </select>
     <select id="queryAllBySpuId" resultMap="SkuMap" >
-        select id, spu_id, title, image, price, param, saleable, valid, create_time, last_update_time, is_deleted from t_sku where spu_id = #{spuId} limit 30
+        select id, spu_id, title, image, price, param, saleable, valid, create_time, last_update_time,surplus_count, is_deleted from t_sku where spu_id = #{spuId} limit 30
     </select>
 
     <!--新增所有列-->

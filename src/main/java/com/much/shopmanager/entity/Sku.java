@@ -37,6 +37,7 @@ public class Sku implements Serializable {
     private Date lastUpdateTime;
     
     private Integer isDeleted;
+    private Integer surplusCount;
 
 
 

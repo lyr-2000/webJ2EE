@@ -1,3 +1,4 @@
+import com.much.shopmanager.entity.Spu;
 import com.much.shopmanager.service.SpuService;
 import org.junit.Test;
 
@@ -12,8 +13,11 @@ public class SpuTest extends PPPTest{
 
     @Test
     public void printSPU() {
+        Spu s = new Spu();
+        s.setCategoryId(21);
+
         System.out.println(
-                spuService.queryShowSpu(0,1)
+                spuService.queryByFuzzyName("小米","k","手机",1,12)
         );
     }
     @Resource

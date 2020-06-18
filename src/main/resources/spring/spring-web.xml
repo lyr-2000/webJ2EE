@@ -28,6 +28,10 @@
         <mvc:interceptor>
             <mvc:mapping path="/**" />
             <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/index.html" />
+            <mvc:exclude-mapping path="/index.jsp" />
+            <mvc:exclude-mapping path="/dist/**" />
+            <mvc:exclude-mapping path="/static/**" />
             <bean class="com.much.shopmanager.config.TokenInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>

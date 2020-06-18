@@ -1,6 +1,10 @@
 package com.much.shopmanager.service;
 
+import com.much.shopmanager.entity.Sku;
+import com.much.shopmanager.entity.SkuBO;
 import com.much.shopmanager.entity.Spu;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 /**
@@ -10,6 +14,10 @@ import java.util.List;
  * @since 2020-06-07 01:44:06
  */
 public interface SpuService {
+
+    Spu insertOrUpdate(  String brand,
+                         String category,
+                         String spuProductName);
 
     /**
      * 通过ID查询单条数据
@@ -27,6 +35,16 @@ public interface SpuService {
      * @return 对象列表
      */
     List<Spu> queryAllByLimit(int offset, int limit);
+    List<Spu> queryByExample(Spu example);
+    List<Spu> queryByFuzzyName(String brandName,String categoryName,String title,Integer page,Integer size);
+
+    // List<Spu> queryByFuzzyName(String brandName, String categoryName, String title, Integer page, Integer size);
+
+    Long countByName(String brandName, String categoryName, String title);
+
+    List<Spu> queryByExample(Spu example, Integer page, Integer size);
+
+    Long countByExample(Spu example);
 
     List<Spu> queryShowSpu(int offset, int limit);
 

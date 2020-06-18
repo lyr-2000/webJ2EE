@@ -1,5 +1,6 @@
 package com.much.shopmanager.pojo.dto;
 
+import lombok.Data;
 import lombok.ToString;
 import org.springframework.beans.BeanUtils;
 
@@ -8,9 +9,11 @@ import org.springframework.beans.BeanUtils;
  * @create 2020/6/9 1:38
  */
 @ToString
+@Data
 public class Result<DataValue> {
     private Integer code;
     private DataValue data;
+    private Long total;
     public static  <DataValue>Result<DataValue> of(DataValue resp) {
         Result<DataValue> result = new Result<>();
         result.setData(resp);

@@ -72,9 +72,17 @@ public class CategoryController {
 
 
     @GetMapping("/category")
-    public List<Category> findCategoryList(@RequestParam Integer page,@RequestParam Integer size) {
-        return null;
-        // categoryService.queryAllByLimit()
+    public List<Category> findCategoryList(
+            @RequestParam(defaultValue = "1") Integer sort
+            ,@RequestParam Integer parentId) {
+        // sort = sort and parentId = null or ?
+        //sort 表示 n级分类
+        Category example = new Category();
+        example.setParentId(parentId);
+        example.setSort(sort);
+        // Long total = categoryService.
+        return categoryService.selectByExample(example);
+
     }
 
 

@@ -23,6 +23,9 @@ public class TokenInterceptor  implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String token = httpServletRequest.getHeader("token");
         String uri =  httpServletRequest.getRequestURI();
+        // if("/dist".equals(uri)) {
+        //     return true;
+        // }
 
 
         log.info("收到请求 {} {}",uri ,httpServletRequest.getMethod());

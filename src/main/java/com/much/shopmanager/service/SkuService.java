@@ -1,6 +1,8 @@
 package com.much.shopmanager.service;
 
 import com.much.shopmanager.entity.Sku;
+import com.much.shopmanager.entity.SkuBO;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,15 @@ import java.util.List;
  * @since 2020-06-07 01:44:06
  */
 public interface SkuService {
+
+
+    /**
+     * 插入一条数据
+     * @param skuBO
+     * @return
+     */
+    Sku insertOrUpdate(SkuBO skuBO);
+
 
     /**
      * 通过ID查询单条数据

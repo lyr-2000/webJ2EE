@@ -50,6 +50,7 @@ public class CategoryServiceImpl implements CategoryService {
      */
     @Override
     public Category insert(Category category) {
+
         this.categoryDao.insert(category);
         return category;
     }
@@ -81,4 +82,11 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> selectLevelData(Integer page,Integer size) {
         return categoryDao.queryAllByLimit((page-1)*size,size);
     }
+
+    @Override
+    public List<Category> selectByExample(Category category) {
+        return categoryDao.queryAll(category);
+    }
+
+
 }
